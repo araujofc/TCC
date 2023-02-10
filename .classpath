@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="android/app/src/main/java"/>
+	<classpathentry kind="src" path="build/app/generated/source/buildConfig/debug"/>
+	<classpathentry kind="lib" path="android/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="build/app/intermediates/flutter/debug/libs.jar"/>
+	<classpathentry kind="lib" path="build/flutter_plugin_android_lifecycle/intermediates/compile_r_class_jar/debug/R.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

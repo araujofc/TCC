@@ -1,0 +1,123 @@
+@startuml
+set namespaceSeparator ::
+
+class "flutter_crud::helpers::contactHelper.dart::ContactHelper" {
+  {static} -ContactHelper* _instance
+  -Database* _db
+  +Future<Database*>* db
+  +Future<Database*>* initDb()
+  +Future<Contact*>* saveContact()
+  +Future<Contact*>* getContact()
+  +Future<int*>* deleteContact()
+  +Future<int*>* updateContact()
+  +Future<List<dynamic>*>* getAllContacts()
+  +Future<int*>* getNumber()
+  +Future<dynamic>* close()
+}
+
+"flutter_crud::helpers::contactHelper.dart::ContactHelper" o-- "flutter_crud::helpers::contactHelper.dart::ContactHelper"
+"flutter_crud::helpers::contactHelper.dart::ContactHelper" o-- "sqflite_common::sqlite_api.dart::Database"
+
+class "flutter_crud::helpers::contactHelper.dart::Contact" {
+  +int* id
+  +String* name
+  +String* email
+  +String* phone
+  +String* img
+  +Map<dynamic, dynamic>* toMap()
+  +String* toString()
+}
+
+class "flutter_crud::view::contact_Page.dart::ContactPage" {
+  +Contact* contact
+  +State<ContactPage*>* createState()
+}
+
+"flutter_crud::view::contact_Page.dart::ContactPage" o-- "flutter_crud::helpers::contactHelper.dart::Contact"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "flutter_crud::view::contact_Page.dart::ContactPage"
+
+class "flutter_crud::view::contact_Page.dart::_ContactPageState" {
+  -Contact* _editedContact
+  -bool* _userEdited
+  -TextEditingController* _nameEditContoller
+  -TextEditingController* _emailEditContoller
+  -TextEditingController* _phoneEditContoller
+  -FocusNode* _nameFocus
+  +void initState()
+  +Widget* build()
+  -Future<bool*>* _requestPop()
+}
+
+"flutter_crud::view::contact_Page.dart::_ContactPageState" o-- "flutter_crud::helpers::contactHelper.dart::Contact"
+"flutter_crud::view::contact_Page.dart::_ContactPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter_crud::view::contact_Page.dart::_ContactPageState" o-- "flutter::src::widgets::focus_manager.dart::FocusNode"
+"flutter::src::widgets::framework.dart::State" <|-- "flutter_crud::view::contact_Page.dart::_ContactPageState"
+
+class "flutter_crud::view::gallery_points.dart::Gallery" {
+  +State<Gallery*>* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "flutter_crud::view::gallery_points.dart::Gallery"
+
+class "flutter_crud::view::gallery_points.dart::_GalleryState" {
+  +int* activeIndex
+  +List<String*>* urlimages
+  +Widget* build()
+  +Widget* buildImage()
+  +Widget* buildIndicator()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "flutter_crud::view::gallery_points.dart::_GalleryState"
+
+class "flutter_crud::view::home_page.dart::Homepage" {
+  +State<Homepage*>* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "flutter_crud::view::home_page.dart::Homepage"
+
+class "flutter_crud::view::home_page.dart::_HomepageState" {
+  +ContactHelper* helper
+  +List<Contact*>* contacts
+  +void initState()
+  +Widget* build()
+  -Widget* _contactCard()
+  -void _showOptions()
+  -Future<void>* _ShowContactPage()
+  -void _getAllContacts()
+}
+
+"flutter_crud::view::home_page.dart::_HomepageState" o-- "flutter_crud::helpers::contactHelper.dart::ContactHelper"
+"flutter::src::widgets::framework.dart::State" <|-- "flutter_crud::view::home_page.dart::_HomepageState"
+
+class "flutter_crud::view::locationInput.dart::LocationInput" {
+  +State<LocationInput*>* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "flutter_crud::view::locationInput.dart::LocationInput"
+
+class "flutter_crud::view::locationInput.dart::_LocationInputState" {
+  -String* _previewImageUrl
+  -Future<void>* _getCurrentUserLocation()
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "flutter_crud::view::locationInput.dart::_LocationInputState"
+
+class "flutter_crud::view::location_Util.dart::LocationUtil" {
+  {static} +String* generatePreviewLocateImage()
+}
+
+class "flutter_crud::view::points_page.dart::Pointspage" {
+  +State<Pointspage*>* createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "flutter_crud::view::points_page.dart::Pointspage"
+
+class "flutter_crud::view::points_page.dart::_PointspageState" {
+  +Widget* build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "flutter_crud::view::points_page.dart::_PointspageState"
+
+
+@enduml
